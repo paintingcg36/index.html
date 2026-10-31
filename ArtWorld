@@ -319,6 +319,327 @@
                 div.className = "flex justify-between items-center p-3 bg-zinc-50 rounded border border-zinc-200 text-sm";
                 div.innerHTML = `
                     <div>
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rakesh Kumar Sahu Fine Art | Original Paintings & Fine Art Prints</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            gold: '#D4AF37',
+                            dark: '#121212',
+                            accent: '#997A15',
+                            cream: '#FAFAF7',
+                            surface: '#1E1E1E'
+                        }
+                    },
+                    fontFamily: {
+                        heading: ['Cinzel', 'serif'],
+                        body: ['Plus Jakarta Sans', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-brand-cream text-zinc-800 font-body antialiased flex flex-col min-h-screen">
+
+    <!-- NAVIGATION -->
+    <nav class="sticky top-0 z-40 bg-zinc-900/95 backdrop-blur-md text-white border-b border-zinc-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#" class="flex flex-col">
+                <span class="font-heading text-xl sm:text-2xl font-bold tracking-wider text-brand-gold">RAKESH KUMAR SAHU</span>
+                <span class="text-[10px] tracking-[0.25em] text-zinc-400 uppercase">Fine Art &amp; Studio · India</span>
+            </a>
+
+            <div class="hidden md:flex items-center space-x-8 text-sm uppercase tracking-widest text-zinc-300 font-medium">
+                <a href="#gallery" class="hover:text-brand-gold transition-colors">Gallery</a>
+                <a href="#about" class="hover:text-brand-gold transition-colors">About Artist</a>
+                <a href="#commission" class="hover:text-brand-gold transition-colors">Order &amp; Custom Work</a>
+            </div>
+
+            <div class="flex items-center space-x-4">
+                <button onclick="toggleCartDrawer()" class="relative p-2 text-zinc-300 hover:text-brand-gold transition-colors" aria-label="Shopping Cart">
+                    <i class="fa-solid fa-bag-shopping text-xl"></i>
+                    <span id="cartCount" class="absolute -top-1 -right-1 bg-brand-gold text-zinc-900 font-bold text-xs w-5 h-5 rounded-full flex items-center justify-center">0</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="bg-zinc-900 text-white py-16 md:py-24 border-b border-zinc-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center gap-12">
+            <div class="flex-1 space-y-6">
+                <span class="inline-block px-3 py-1 bg-brand-gold/10 text-brand-gold text-xs font-semibold tracking-widest uppercase rounded-full border border-brand-gold/30">Official Online Gallery</span>
+                <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">Original Artworks &amp; Fine Art Prints</h1>
+                <p class="text-zinc-400 text-base sm:text-lg max-w-xl">Explore original acrylics, watercolors, charcoal sketches, and digital art created by <strong>Rakesh Kumar Sahu</strong>. Safe packaging and shipping across India.</p>
+                <div class="flex flex-wrap gap-4 pt-2">
+                    <a href="#gallery" class="bg-brand-gold text-zinc-900 font-semibold px-6 py-3 rounded hover:bg-yellow-500 transition-colors shadow-lg">Browse Collection</a>
+                    <a href="#commission" class="border border-zinc-700 text-zinc-200 hover:border-brand-gold hover:text-brand-gold font-semibold px-6 py-3 rounded transition-colors">Request Commission</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY SECTION -->
+    <section id="gallery" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex-1">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4 border-b border-zinc-200 pb-6">
+            <div>
+                <h2 class="font-heading text-3xl font-bold text-zinc-900">Artwork Collection</h2>
+                <p class="text-zinc-600 text-sm mt-1">Live catalog controlled via Excel database</p>
+            </div>
+            
+            <!-- Category Filter Buttons -->
+            <div class="flex flex-wrap gap-2" id="categoryFilters">
+                <button onclick="filterCategory('All')" class="filter-btn active-filter bg-zinc-900 text-white px-4 py-2 rounded text-xs font-semibold uppercase tracking-wider">All</button>
+                <button onclick="filterCategory('Acrylic')" class="filter-btn bg-zinc-200 text-zinc-700 hover:bg-zinc-300 px-4 py-2 rounded text-xs font-semibold uppercase tracking-wider">Acrylic</button>
+                <button onclick="filterCategory('Watercolor')" class="filter-btn bg-zinc-200 text-zinc-700 hover:bg-zinc-300 px-4 py-2 rounded text-xs font-semibold uppercase tracking-wider">Watercolor</button>
+                <button onclick="filterCategory('Sketches')" class="filter-btn bg-zinc-200 text-zinc-700 hover:bg-zinc-300 px-4 py-2 rounded text-xs font-semibold uppercase tracking-wider">Sketches</button>
+                <button onclick="filterCategory('Digital')" class="filter-btn bg-zinc-200 text-zinc-700 hover:bg-zinc-300 px-4 py-2 rounded text-xs font-semibold uppercase tracking-wider">Digital</button>
+            </div>
+        </div>
+
+        <!-- Dynamic Grid Container -->
+        <div id="artGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="col-span-full text-center py-20">
+                <i class="fa-solid fa-circle-notch fa-spin text-3xl text-brand-gold"></i>
+                <p class="text-zinc-500 text-sm mt-3">Loading artworks...</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT ARTIST SECTION -->
+    <section id="about" class="bg-zinc-900 text-zinc-200 py-16 border-t border-zinc-800">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+            <h2 class="font-heading text-3xl font-bold text-brand-gold">About Rakesh Kumar Sahu</h2>
+            <p class="text-zinc-400 leading-relaxed max-w-3xl mx-auto">
+                Based in India, Rakesh Kumar Sahu is a passionate fine artist working across diverse traditional and contemporary mediums. 
+                His portfolio ranges from textured acrylic canvases and expressive watercolor landscapes to detailed charcoal sketches and modern digital art. 
+                Every original piece and fine art print is crafted with precision and carefully packaged for collectors.
+            </p>
+        </div>
+    </section>
+
+    <!-- CUSTOM ORDER & COMMISSION SECTION -->
+    <section id="commission" class="py-16 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-white p-8 sm:p-12 rounded-xl shadow-lg border border-zinc-200">
+            <h2 class="font-heading text-2xl sm:text-3xl font-bold text-zinc-900 mb-2">Custom Artwork &amp; Commission Request</h2>
+            <p class="text-zinc-600 text-sm mb-8">Looking for a custom painting or specific size? Fill out the details below to request a personalized artwork.</p>
+            
+            <form id="commissionForm" onsubmit="handleCommissionSubmit(event)" class="space-y-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-zinc-700 mb-2">Your Full Name</label>
+                        <input type="text" id="commName" required class="w-full border border-zinc-300 rounded px-4 py-3 text-sm focus:outline-none focus:border-brand-gold">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-zinc-700 mb-2">Mobile / WhatsApp Number</label>
+                        <input type="tel" id="commPhone" required placeholder="+91 98765 43210" class="w-full border border-zinc-300 rounded px-4 py-3 text-sm focus:outline-none focus:border-brand-gold">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-zinc-700 mb-2">Preferred Medium</label>
+                        <select id="commMedium" class="w-full border border-zinc-300 rounded px-4 py-3 text-sm focus:outline-none focus:border-brand-gold">
+                            <option value="Acrylic Canvas">Acrylic on Canvas</option>
+                            <option value="Watercolor">Watercolor Paper</option>
+                            <option value="Charcoal Sketch">Charcoal Sketch</option>
+                            <option value="Digital Art">Digital Illustration</option>
+                            <option value="Mixed Media">Mixed Media</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-zinc-700 mb-2">Estimated Budget (₹ INR)</label>
+                        <input type="text" id="commBudget" placeholder="E.g., ₹10,000 - ₹25,000" class="w-full border border-zinc-300 rounded px-4 py-3 text-sm focus:outline-none focus:border-brand-gold">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-zinc-700 mb-2">Artwork Specifications &amp; Notes</label>
+                    <textarea id="commNotes" rows="4" placeholder="Describe canvas dimensions (e.g., 18x24 in), subject matter, colors, or reference concepts..." class="w-full border border-zinc-300 rounded px-4 py-3 text-sm focus:outline-none focus:border-brand-gold"></textarea>
+                </div>
+
+                <button type="submit" id="commSubmitBtn" class="w-full bg-zinc-900 text-white font-bold py-4 rounded hover:bg-brand-gold hover:text-zinc-900 transition-colors uppercase tracking-widest text-sm">
+                    Submit Commission Request
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- SHOPPING CART DRAWER -->
+    <div id="cartDrawer" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="toggleCartDrawer()"></div>
+        <div class="absolute inset-y-0 right-0 max-w-full flex pl-10">
+            <div class="w-screen max-w-md bg-white shadow-xl flex flex-col">
+                <div class="p-6 bg-zinc-900 text-white flex items-center justify-between">
+                    <h3 class="font-heading text-lg font-bold">Your Order Cart</h3>
+                    <button onclick="toggleCartDrawer()" class="text-zinc-400 hover:text-white" aria-label="Close Cart"><i class="fa-solid fa-xmark text-xl"></i></button>
+                </div>
+                <div id="cartItems" class="flex-1 overflow-y-auto p-6 space-y-4">
+                    <p class="text-zinc-500 text-center py-10">Your cart is currently empty.</p>
+                </div>
+                <div class="p-6 border-t border-zinc-200 bg-zinc-50 space-y-4">
+                    <div class="flex justify-between font-bold text-zinc-900 text-lg">
+                        <span>Total Amount:</span>
+                        <span id="cartTotal">₹0</span>
+                    </div>
+                    <button onclick="processOrderCheckout()" class="w-full bg-brand-gold text-zinc-900 font-bold py-3 rounded hover:bg-yellow-500 transition-colors uppercase text-sm tracking-wider">
+                        Proceed to UPI / Order Checkout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-zinc-950 text-zinc-500 text-xs py-8 border-t border-zinc-900 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 text-center space-y-2">
+            <p>© 2026 Rakesh Kumar Sahu Fine Art. All Rights Reserved.</p>
+            <p>Pan-India Delivery · UPI Payments Accepted</p>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        let artworkCatalog = [];
+        let currentCart = [];
+        let activeCategory = "All";
+
+        // Loads JSON generated by Python script from Excel file
+        async function loadArtworks() {
+            const grid = document.getElementById("artGrid");
+            try {
+                // Attempts to fetch JSON generated from Excel file
+                const response = await fetch('artworks.json');
+                if (!response.ok) throw new Error("artworks.json not found, using fallback catalog");
+                const data = await response.json();
+                
+                artworkCatalog = data.map(item => ({
+                    id: String(item.ID || item.id),
+                    title: item.Title || item.title,
+                    category: item.Category || item.category || "Acrylic",
+                    medium: item.Medium || item.medium || "Mixed Medium",
+                    priceOriginal: parseInt(item.Price_Original_INR || item.priceOriginal || 0),
+                    pricePrint: parseInt(item.Price_Print_INR || item.pricePrint || 0),
+                    availability: item.Availability || item.availability || "Available",
+                    image: item.Image_URL || item.image || "https://via.placeholder.com/600",
+                    description: item.Description || item.description || ""
+                }));
+            } catch (err) {
+                console.warn(err.message);
+                // Default fallback if artworks.json isn't present locally yet
+                artworkCatalog = [
+                    { id: "101", title: "Divine Ganesha", category: "Acrylic", medium: "Acrylic on Canvas", priceOriginal: 25000, pricePrint: 1800, availability: "Available", image: "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=800&q=80", description: "Textured acrylic painting depicting traditional warmth." },
+                    { id: "102", title: "Monsoon Serenade", category: "Watercolor", medium: "Watercolor on Paper", priceOriginal: 12000, pricePrint: 1200, availability: "Available", image: "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=800&q=80", description: "Luminous watercolor painting capturing rainy mornings." },
+                    { id: "103", title: "Heritage Courtyard", category: "Sketches", medium: "Charcoal on Paper", priceOriginal: 8500, pricePrint: 950, availability: "Available", image: "https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=800&q=80", description: "Detailed charcoal sketch of Indian architecture." },
+                    { id: "104", title: "Varanasi Lights", category: "Digital", medium: "Digital Fine Art", priceOriginal: 0, pricePrint: 1500, availability: "Available", image: "https://images.unsplash.com/photo-1518998053901-5348d3961a04?auto=format&fit=crop&w=800&q=80", description: "Digital vector artwork celebrating evening ghats." }
+                ];
+            }
+            renderGallery();
+        }
+
+        function renderGallery() {
+            const grid = document.getElementById("artGrid");
+            grid.innerHTML = "";
+
+            const filtered = activeCategory === "All" 
+                ? artworkCatalog 
+                : artworkCatalog.filter(item => item.category.toLowerCase() === activeCategory.toLowerCase());
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `<p class="col-span-full text-center text-zinc-500 py-10">No artworks found in this category.</p>`;
+                return;
+            }
+
+            filtered.forEach(art => {
+                const card = document.createElement("div");
+                card.className = "bg-white rounded-lg shadow-md overflow-hidden border border-zinc-200 flex flex-col justify-between";
+                card.innerHTML = `
+                    <div>
+                        <div class="relative h-64 overflow-hidden bg-zinc-100">
+                            <img src="${art.image}" alt="${art.title}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-3 right-3 bg-zinc-900/80 text-brand-gold text-[10px] font-bold px-2 py-1 uppercase rounded tracking-wider backdrop-blur-sm">
+                                ${art.medium}
+                            </span>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-heading font-bold text-lg text-zinc-900">${art.title}</h3>
+                            <p class="text-zinc-500 text-xs mt-1 line-clamp-2">${art.description}</p>
+                            
+                            <div class="mt-4 pt-3 border-t border-zinc-100 flex items-center justify-between">
+                                <div>
+                                    ${art.priceOriginal > 0 ? `<p class="text-xs text-zinc-500">Original: <strong class="text-zinc-900 text-sm">₹${art.priceOriginal.toLocaleString('en-IN')}</strong></p>` : ''}
+                                    ${art.pricePrint > 0 ? `<p class="text-xs text-zinc-500">Print from: <strong class="text-zinc-900 text-sm">₹${art.pricePrint.toLocaleString('en-IN')}</strong></p>` : ''}
+                                </div>
+                                <span class="text-xs font-semibold ${art.availability === 'Available' ? 'text-emerald-600' : 'text-red-500'}">
+                                    ${art.availability}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-5 pt-0 flex gap-2">
+                        ${art.priceOriginal > 0 && art.availability === 'Available' ? `
+                            <button onclick="addToCart('${art.id}', 'Original', ${art.priceOriginal})" class="flex-1 bg-zinc-900 text-white text-xs font-bold py-2 rounded hover:bg-brand-gold hover:text-zinc-900 transition-colors">Buy Original</button>
+                        ` : ''}
+                        ${art.pricePrint > 0 ? `
+                            <button onclick="addToCart('${art.id}', 'Archival Print', ${art.pricePrint})" class="flex-1 border border-zinc-800 text-zinc-900 text-xs font-bold py-2 rounded hover:bg-zinc-100 transition-colors">Order Print</button>
+                        ` : ''}
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function filterCategory(cat) {
+            activeCategory = cat;
+            document.querySelectorAll(".filter-btn").forEach(btn => {
+                btn.classList.remove("active-filter", "bg-zinc-900", "text-white");
+                btn.classList.add("bg-zinc-200", "text-zinc-700");
+            });
+            event.target.classList.add("active-filter", "bg-zinc-900", "text-white");
+            renderGallery();
+        }
+
+        function addToCart(id, type, price) {
+            const art = artworkCatalog.find(a => a.id === id);
+            if (!art) return;
+            currentCart.push({ artId: id, title: art.title, type: type, price: price });
+            updateCartUI();
+            toggleCartDrawer();
+        }
+
+        function updateCartUI() {
+            document.getElementById("cartCount").innerText = currentCart.length;
+            const container = document.getElementById("cartItems");
+            const totalEl = document.getElementById("cartTotal");
+
+            if (currentCart.length === 0) {
+                container.innerHTML = `<p class="text-zinc-500 text-center py-10">Your cart is currently empty.</p>`;
+                totalEl.innerText = "₹0";
+                return;
+            }
+
+            let sum = 0;
+            container.innerHTML = "";
+            currentCart.forEach((item, index) => {
+                sum += item.price;
+                const div = document.createElement("div");
+                div.className = "flex justify-between items-center p-3 bg-zinc-50 rounded border border-zinc-200 text-sm";
+                div.innerHTML = `
+                    <div>
                         <p class="font-bold text-zinc-900">${item.title}</p>
                         <p class="text-xs text-zinc-500">${item.type}</p>
                         <p class="text-xs font-semibold text-brand-accent">₹${item.price.toLocaleString('en-IN')}</p>
@@ -361,6 +682,13 @@
             e.preventDefault();
             alert("Your commission request has been received! Rakesh will review your specifications and get in touch with you directly.");
             document.getElementById("commissionForm").reset();
+        }
+
+        // Initialize gallery on page startup
+        loadArtworks();
+    </script>
+</body>
+</html>m").reset();
         }
 
         // Initialize gallery on page startup
